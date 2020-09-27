@@ -20,8 +20,11 @@ Route::get('/', function () {
 
 Route::get('/courses', 'App\Http\Controllers\CoursesController@index')->name('courses.index');
 
+Route::group(['auth:sanctum', 'verified'], function () {
 
+    Route::get('/course/{id}', 'App\Http\Controllers\CoursesController@show')->name('courses.show');
+    Route::get('/dashbord', function(){
+        return Inertia\Inertia::render('Dashboard');
+    })->name('dashbord');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
+});
