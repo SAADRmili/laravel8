@@ -28,4 +28,5 @@ Route::group(['auth:sanctum', 'verified'], function () {
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');
 
+    Route::post('/courses', 'App\Http\Controllers\CoursesController@store');
 });
