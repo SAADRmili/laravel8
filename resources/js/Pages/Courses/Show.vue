@@ -7,7 +7,9 @@
            <div class="text-2xl">{{ this.courseShow.episodes[this.currentKey].title}}</div>
             <iframe class="w-full h-screen" :src="this.courseShow.episodes[this.currentKey].video_url" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
              <div class="text-sm text-gray-500">{{ this.courseShow.episodes[this.currentKey].description}}</div>
-
+            <div class="py-6">
+                <progress-bar :watched-episodes="watched" :episodes="course.episodes"></progress-bar>
+            </div>
         <div class="mt-6">
             <ul v-for="(episode,index) in this.courseShow.episodes" :key="episode.id">
                 <li class="mt-3 flex justify-between items-center" >
@@ -28,9 +30,10 @@
 <script>
 import AppLayout from './../../Layouts/AppLayout';
 import ProgressButton from './ProgressButton';
+import ProgressBar from './ProgressBar';
 export default {
      components:{
-         AppLayout,ProgressButton
+         AppLayout,ProgressButton,ProgressBar
      },
      props :['course','watched'],
      data()
